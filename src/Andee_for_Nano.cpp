@@ -43,8 +43,8 @@ AndeeClass Andee;
 // create service
 BLEService andeeService("516e7d03-c4ea-4103-9bd2-c560221a0c16");
 // create counter characteristic
-BLEByteCharacteristic AndeeTx("516e7d04-c4ea-4103-9bd2-c560221a0c16", BLEWrite | BLEWriteWithoutResponse | BLENotify);
-BLEByteCharacteristic AndeeRx("516e7d05-c4ea-4103-9bd2-c560221a0c16", BLEWrite | BLERead);
+BLECharacteristic AndeeTx("516e7d04-c4ea-4103-9bd2-c560221a0c16", BLEWrite | BLEWriteWithoutResponse | BLENotify, PACKET_LEN);
+BLECharacteristic AndeeRx("516e7d05-c4ea-4103-9bd2-c560221a0c16", BLEWrite | BLERead, PACKET_LEN);
 
 //////////////////////BT Callbacks///////////////////
 void blePeripheralConnectHandler(BLEDevice central)
