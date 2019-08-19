@@ -280,7 +280,7 @@ void processReply()
 			memcpy(phoneBuffer,readBuffer + 4,(buffLen - 4));
 			Serial.println(phoneBuffer);
 		}
-		memset(readBuffer,0x00,128);
+		memset(readBuffer,0x00,READBUFFERMAX);
 		return;
 	}
 	else if(readBuffer[0] == SLIDER_IN)
@@ -321,7 +321,7 @@ void processReply()
 			}
 		}
     
-		memset(readBuffer,0x00,80);
+		memset(readBuffer,0x00,READBUFFERMAX);
 	}
 	else if(readBuffer[0] == TIMEEPOCH)
 	{
@@ -361,38 +361,38 @@ void processReply()
 		sysTime = atol(buffer) + (gmt*3600) + (dst*3600) ;
 		sprintf(phoneBuffer,"%ld",sysTime);
 		//setTime(sysTime);
-		memset(readBuffer,0x00,80);
+		memset(readBuffer,0x00,READBUFFERMAX);
 	}
 	else if(readBuffer[0] == JOYSTICK)
 	{
 		memset(phoneBuffer,0x00,64);
 		memcpy(phoneBuffer,readBuffer,10);
 		phoneBuffer[9] = '\0';
-		memset(readBuffer,0x00,80);		
+		memset(readBuffer,0x00,READBUFFERMAX);		
 	}
 	else if(readBuffer[0] == GYRO)
 	{
 		memset(sensorsBuffer,0x00,64);		
 		memcpy(sensorsBuffer,readBuffer+2,strlen(readBuffer)-2);
-		memset(readBuffer,0x00,80);
+		memset(readBuffer,0x00,READBUFFERMAX);
 	}
 	else if(readBuffer[0] == LAC)
 	{
 		memset(sensorsBuffer,0x00,64);		
 		memcpy(sensorsBuffer,readBuffer+2,strlen(readBuffer)-2);
-		memset(readBuffer,0x00,80);
+		memset(readBuffer,0x00,READBUFFERMAX);
 	}
 	else if(readBuffer[0] == GRAV)
 	{
 		memset(sensorsBuffer,0x00,64);		
 		memcpy(sensorsBuffer,readBuffer+2,strlen(readBuffer)-2);
-		memset(readBuffer,0x00,80);
+		memset(readBuffer,0x00,READBUFFERMAX);
 	}
 	else if(readBuffer[0] == GPS)
 	{
 		memset(sensorsBuffer,0x00,64);		
 		memcpy(sensorsBuffer,readBuffer+2,strlen(readBuffer)-2);
-		memset(readBuffer,0x00,80);
+		memset(readBuffer,0x00,READBUFFERMAX);
 	}
 	
 	else if(readBuffer[0] == WATCH)
@@ -429,12 +429,12 @@ void processReply()
 				
 			}
 		}
-		memset(readBuffer,0x00,80);
+		memset(readBuffer,0x00,READBUFFERMAX);
 	}
 	 else if(readBuffer[0] == 0x88)
 	{
 		AndeeAlive= true;
-		memset(readBuffer,0x00,80);
+		memset(readBuffer,0x00,READBUFFERMAX);
 		Serial.println("testing receivers");	
 		return;
 	}
@@ -444,7 +444,7 @@ void processReply()
 	}
 	else
 	{
-		memset(readBuffer,0x00,80);
+		memset(readBuffer,0x00,READBUFFERMAX);
 		Serial.println("Command not recognised");
 	} 
 }
