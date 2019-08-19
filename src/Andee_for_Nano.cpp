@@ -511,8 +511,8 @@ void AndeeClass::begin()
 	BLE.setAdvertisedService(andeeService);
 
 	// add the characteristic to the service
-	andeeService.addAttribute(AndeeTx);
-	andeeService.addAttribute(AndeeRx);
+	andeeService.addCharacteristic(AndeeTx);
+	andeeService.addCharacteristic(AndeeRx);
 	// add service
 	BLE.addService(andeeService);
 
@@ -547,8 +547,7 @@ void AndeeClass::poll()
 
 void AndeeClass::setName(const char* name)
 {
-	andeePeripheral.setLocalName(name);
-	andeePeripheral.setDeviceName(name);
+	BLE.setLocalName(name);
 	nameFlag = 1;
 	delay(1);
 }
@@ -1123,13 +1122,13 @@ void AndeeHelper::setData(const char* data)
 	{
 		data = "     ";
 	}
-    sprintf(dataBuffer, "%s\0", data);
+    sprintf(dataBuffer, "%s", data);
 }
 
 void AndeeHelper::setData(int data)
 {		
 	memset(dataBuffer,0x00,32);			
-	sprintf(dataBuffer, "%d\0", data);
+	sprintf(dataBuffer, "%d", data);
 }
 
 void AndeeHelper::setData(float data,char decPlace)
@@ -1503,12 +1502,8 @@ void AndeeHelper::getJoystick(int* x,int* y)
 /////////////////////////////////////////////////////////////////////
 void AndeeHelper::update(unsigned int loop)
 {
-	BLECentral central = andeePeripheral.central();
-	andeePeripheral.poll();
-	processReply();
-	
+	Andee.poll();	
 	Andee.versionClear();
-	//AndeeNRF52.isConnected();
 	
 	if(loop == 0 || loop == updateLoop)
 	{
