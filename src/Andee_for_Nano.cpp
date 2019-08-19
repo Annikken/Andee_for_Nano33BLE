@@ -502,10 +502,17 @@ void AndeeClass::begin()
 {
 	Serial.begin(9600);
 	
+	// begin initialization
+    if (!BLE.begin()) {
+	  Serial.println("starting BLE failed!");
+
+	  while (1);
+    }
+	
 	// set device name
 	if (nameFlag == 0)
 	{
-		BLE.setLocalName("Andee_Nano");
+		BLE.setLocalName("Andee Nano");
 	}	
 	// set the UUID for the service this peripheral advertises
 	BLE.setAdvertisedService(andeeService);
