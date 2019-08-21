@@ -213,7 +213,7 @@ extern AndeeClass Andee;
 	char bodyFontBuffer[5];
 	//buffer for widget font color
 	
-	char dataBuffer[32];	
+	char dataBuffer[64];	
 	//buffer for data in a widget
 	
 	char titleBuffer[32];

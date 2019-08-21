@@ -278,7 +278,7 @@ void processReply()
 			memset(phoneBuffer,0x00,64);
 			int buffLen = strlen(readBuffer);			
 			memcpy(phoneBuffer,readBuffer + 4,(buffLen - 4));
-			Serial.println(phoneBuffer);
+			Serial.print("phoneBuffer:"); Serial.println(phoneBuffer);
 		}
 		memset(readBuffer,0x00,READBUFFERMAX);
 		return;
@@ -1124,29 +1124,36 @@ void AndeeHelper::setTextColor(char* color)
 
 void AndeeHelper::setData(const char* data)
 {
-	memset(dataBuffer,0x00,32);		
-	if(strlen(data) <= 0)
+	memset(dataBuffer,0x00,64);	
+	int l = strlen(data);
+		
+	if(l <= 0)
 	{
 		data = "     ";
+		l = 5;
 	}
-    sprintf(dataBuffer, "%s", data);
+	else if (l >= 62)
+	{
+		l = 62;
+	}	
+	snprintf(dataBuffer, l + 1, "%s", data);	
 }
 
 void AndeeHelper::setData(int data)
 {		
-	memset(dataBuffer,0x00,32);			
+	memset(dataBuffer,0x00,64);			
 	sprintf(dataBuffer, "%d", data);
 }
 
 void AndeeHelper::setData(float data,char decPlace)
 {		
-	memset(dataBuffer,0x00,32);		
+	memset(dataBuffer,0x00,64);		
 	dtostrf(data,3,decPlace,dataBuffer);
 }
 
 void AndeeHelper::setData(double data,char decPlace)
 {		
-	memset(dataBuffer,0x00,32);	
+	memset(dataBuffer,0x00,64);	
 	dtostrf(data,3,decPlace,dataBuffer);
 }
 
@@ -1155,11 +1162,19 @@ void AndeeHelper::setData(double data,char decPlace)
 void AndeeHelper::setTitle(const char* title)
 {
 	memset(titleBuffer,0x00,32);	
-	if(strlen(title) <= 0)
+	int l = strlen(title);
+		
+	if(l <= 0)
 	{
 		title = "     ";
+		l = 5;
 	}
-	sprintf(titleBuffer, "%s", title);
+	else if (l >= 30)
+	{
+		l = 30;
+	}	
+	snprintf(titleBuffer, l+1, "%s", title);
+	Serial.print("titleBuffer");Serial.println(titleBuffer);
 }
 
 void AndeeHelper::setTitle(int title)
@@ -1185,11 +1200,18 @@ void AndeeHelper::setTitle(double title, char decPlace)
 void AndeeHelper::setUnit(const char* unit)
 {
 	memset(unitBuffer,0x00,32);    
-	if(strlen(unit) <= 0)
+	int l = strlen(unit);
+		
+	if(l <= 0)
 	{
 		unit = "     ";
+		l = 5;
 	}
-	sprintf(unitBuffer, "%s", unit);
+	else if (l >= 30)
+	{
+		l = 30;
+	}	
+	snprintf(unitBuffer, l+1, "%s", unit);
 }
 
 void AndeeHelper::setUnit(int unit)
@@ -1247,7 +1269,15 @@ void AndeeHelper::setMinMax(double min,double max,char decPlace)
 
 void AndeeHelper::getKeyboardMessage(char* message)
 {	
-	sprintf(message,"%s", phoneBuffer);
+	int l = strlen(phoneBuffer);
+	if(l >= 32)
+	{
+		snprintf(message, 32, "%s", phoneBuffer);
+	}
+	else
+	{
+		snprintf(message, l + 1, "%s", phoneBuffer);
+	}	
 	return;	
 }
 
