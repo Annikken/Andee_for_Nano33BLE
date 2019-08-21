@@ -470,6 +470,21 @@ const char REMOVE = 'E';//
 #define NUMERIC '2'
 #define NUMERIC_PW '3'
 
+////////////////////DATE/TIME INPUT MACROS/////////////////////
+
+#define Jan 1
+#define Feb 2
+#define Mar 3
+#define Apr 4
+#define May 5
+#define Jun 6
+#define Jul 7
+#define Aug 8
+#define Sep 9
+#define Oct 10
+#define Nov 11
+#define Dec 12
+
 /////////////////////Slider Macros//////////////////////
 
 #define setActiveColor setTitleColor///Used for AnalogDial as well
