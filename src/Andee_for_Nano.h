@@ -504,6 +504,11 @@ const char REMOVE = 'E';//
 #define OFF '0'
 #define MAXSLIDER 10
 
+////////////////////////JOYSTICK MACROS//////////////////// 
+
+#define setYAxisMax setData
+#define setXAxisMax	setUnit
+
 /////////////////////////Text to Speech Macros//////////////////////
 
 #define US '0'
@@ -524,13 +529,14 @@ const char REMOVE = 'E';//
 ////////////////////////////////////Apple Watch Macros////////////////////////////////////
 #define setWatchColor setTitleColor
 #define setWatchTextColor setTitleTextColor
+#define setWatchText setTitle
 
-#define WATCH_TEXT 76
-#define WATCH_TITLE 77
-#define WATCH_BUTTON1 78
-#define WATCH_BUTTON2 79
-#define WATCH_BUTTON3 80
-#define WATCH_BUTTON4 81
+#define WATCH_TITLE 45//77
+#define WATCH_BUTTON1 46//78
+#define WATCH_BUTTON2 47//79
+#define WATCH_BUTTON3 48//80
+#define WATCH_BUTTON4 49//81
+#define WATCH_BUTTON5 50//82
 
 #define WATCH_1BUTTON_A	0
 #define WATCH_2BUTTON_A	1

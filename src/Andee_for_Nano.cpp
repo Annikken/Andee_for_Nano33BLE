@@ -369,8 +369,9 @@ void processReply()
 	else if(readBuffer[0] == JOYSTICK)
 	{
 		memset(phoneBuffer,0x00,64);
-		memcpy(phoneBuffer,readBuffer,10);
-		phoneBuffer[9] = '\0';
+		memcpy(phoneBuffer,readBuffer+2,10);
+		phoneBuffer[10] = '\0';
+		// Serial.print("phoneBuffer");Serial.println(phoneBuffer);
 		memset(readBuffer,0x00,READBUFFERMAX);		
 	}
 	else if(readBuffer[0] == GYRO)
@@ -669,8 +670,9 @@ void AndeeClass::gyroStop()
 
 void AndeeClass::getGyroReading(float* x,float* y,float* z)
 {
-	char* pEnd;	
+	printHEX("sensorsBuffer",sensorsBuffer);
 	
+	char* pEnd;
 	
 	*x = strtod (sensorsBuffer, &pEnd);
 	*y = strtod (pEnd, &pEnd);
@@ -1520,23 +1522,27 @@ bool AndeeHelper::getSliderValue(double* d, int decPlace)
 
 void AndeeHelper::getJoystick(int* x,int* y)
 {
-	char bufferX[4];
-	char bufferY[4];
+	char bufferX[5];
+	char bufferY[5];
 	
-	for(int i = 0;i<3;i++)
+	// printHEX("phoneBuffer",phoneBuffer);
+	
+	for(int i = 0;i<4;i++)
 	{
-		bufferX[i] = phoneBuffer[i+3];
+		bufferX[i] = phoneBuffer[i+2];
 	}
-	bufferX[3] = '\0';
+	bufferX[4] = '\0';
 	
-	for(int j = 0;j<3;j++)
+	for(int j = 0;j<4;j++)
 	{
 		bufferY[j] = phoneBuffer[j+6];
 	}
-	bufferY[3] = '\0';
-	 
+	bufferY[4] = '\0';
 	
-	if(id == phoneBuffer[1])
+	// printHEX("bufferX",bufferX);
+	// printHEX("bufferY",bufferY);
+	
+	if(id == phoneBuffer[0])
 	{
 		*x = atoi(bufferX); //- (int)100;
 		*y = atoi(bufferY); //- (int)100;		
@@ -1609,7 +1615,7 @@ void AndeeHelper::update(unsigned int loop)
 				break;
 				
 				case JOYSTICK:
-					sprintf(bleBuffer,"%c%c%c%s%c%c%s%s%s%c%s%c", START_TAG_UIXYWH,JOYSTICK, id,xywhBuffer,inputTypeBuffer,SEPARATOR,	titleBGBuffer,titleFontBuffer,bodyBGBuffer,SEPARATOR,titleBuffer,END_TAG_UIXYWH);
+					sprintf(bleBuffer,"%c%c%c%s%c%c%s%s%c%s%c%s%c%s%c", START_TAG_UIXYWH,JOYSTICK, id,xywhBuffer,inputTypeBuffer,SEPARATOR,	titleBGBuffer, bodyBGBuffer,SEPARATOR,titleBuffer,SEPARATOR,unitBuffer,SEPARATOR,dataBuffer,END_TAG_UIXYWH);
 				break;
 				
 				case WATCH:
