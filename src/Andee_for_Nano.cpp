@@ -5,7 +5,7 @@
 
 #include <Andee_for_Nano.h>
 
-char Andee_NanoVersion[5] = {'0','.','0','.','1'};
+char Andee_NanoVersion[5] = {'1','.','0','.','0'};
 char versionBuff[18];
 
 int nameFlag = 0;
@@ -1063,6 +1063,17 @@ void AndeeHelper::setSubType(char type)
 		subBuffer = type;
 	
 	
+}
+
+void AndeeHelper::requireAck(bool input){
+	if (input == true)
+	{
+		setInputMode(ACK);
+	}
+	else
+	{
+		setInputMode(NO_ACK);
+	}
 }
 
 /////////////////////////////////////////////////////////////////////

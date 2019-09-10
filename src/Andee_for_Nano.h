@@ -276,6 +276,9 @@ extern AndeeClass Andee;
 					NUMERIC for a Numeric Keyboard with symbols
 					NUMERIC_PW for a Numeric Keyboard that hides typed characters after a few seconds
 	*/
+	
+	void requireAck(bool);	
+	//This function is for backwards compatibility with older Andee sketches. Does the same thing as setInputmode(ACK or NO_ACK)
 		
 	void setSubType(char);
 	//*****DEPRECATED. THIS FUNCTION WILL BE USED INTERNALLY. USERS NO LONGER NEED TO DEFINE ARGUMENT OF THIS FUNCTION.****//
