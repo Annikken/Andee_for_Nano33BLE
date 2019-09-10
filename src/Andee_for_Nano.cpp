@@ -1190,7 +1190,7 @@ void AndeeHelper::setTitle(const char* title)
 		l = 30;
 	}	
 	snprintf(titleBuffer, l+1, "%s", title);
-	Serial.print("titleBuffer");Serial.println(titleBuffer);
+	//Serial.print("titleBuffer");Serial.println(titleBuffer);
 }
 
 void AndeeHelper::setTitle(int title)
