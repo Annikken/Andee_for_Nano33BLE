@@ -632,6 +632,10 @@ void AndeeClass::textToSpeech(const char* speech, float speed, float pitch, char
 	btSend(buffer);	
 }
 
+void AndeeClass::notification(char* title,char* message, char* ticker){
+	Serial.println("function error");
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                          //
 //                               Control for Smartphone Camera                              //

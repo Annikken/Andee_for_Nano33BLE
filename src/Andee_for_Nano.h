@@ -101,6 +101,8 @@ class AndeeClass
 	//speech is your string that you want to be vocalised
 	//The bytes sent are ASTART, TTS, P_SEP, speech, P_SEP, speed, P_SEP, pitch, P_SEP, accent, AEND	
 	
+	void notification(char*,char*, char*);
+	
 	void takePhoto(char, char, char);
 	//This function uses the smartphone/tablet camera to take pictures.
 	//cameraType is either FRONT, REAR or CAM_DEFAULT
