@@ -5,7 +5,7 @@ This library allow users to use the Andee app on the Arduino Nano 33 BLE and Ard
 ## Installation
 1. Make sure that your Arduino IDE can recognise your Arduino Nano 33 BLE board. If you have done this, go to step 2. If not, in the Arduino IDE, go to File -> Board -> Boards Manager. Search for "Arduino nRF528x Boards" without the open inverted commas. Then press the Install button and wait for the installation to finish.
 
-2. Next you will need to install the ArduinoBLE library. In the Arduino IDE, go to Sketch -> Include Library -> Manage Libraries. Search for ArduinoBLE and install the latest version.
+2. Next you will need to install the ArduinoBLE library. In the Arduino IDE, go to Sketch -> Include Library -> Manage Libraries. Search for "ArduinoBLE" and install the latest version.
 
 3. Lastly you will need the Andee for Nano library. You can download the library by going to the library manager again and search for Andee for nano. Install the latest version and you should be ready.
 
