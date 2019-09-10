@@ -32,6 +32,7 @@ void systemTime(void);
 
 void floattostrf(char*,int,float);
 void floattostrf(char*,int,double);
+//These functions convert a floating or a double number to a string																   
 
 void versionNumber(void);
 
